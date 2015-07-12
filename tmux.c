@@ -324,6 +324,11 @@ main(int argc, char **argv)
 		options_set_number(&global_w_options, "mode-keys", keys);
 	}
 
+	if ((s = getenv("TERM")) != NULL) {
+		if (strstr(s, "-256color") != NULL)
+			options_set_string(&global_options, "default-terminal", "screen-256color");
+        }
+
 	/* Locate the configuration file. */
 	if (cfg_file == NULL) {
 		home = getenv("HOME");
